@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'frege'
+apply plugin: 'com.bmuschko.nexus'
+
+group = 'com.datatyped.frege'
+version = '1.0-SNAPSHOT'
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'org.frege-lang:frege-gradle-plugin:latest.release'
+    classpath 'com.bmuschko:gradle-nexus-plugin:latest.release'
+  }
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile 'com.theoryinpractise.frege:frege:latest.release'
+}
+
+jar {
+  excludes += '**/*.java'
+}
+
+modifyPom {
+  project {
+    name 'pretty'
+    description 'Frege Pretty-printer library'
+    url 'https://github.com/datatyped/pretty'
+    inceptionYear '2015'
+
+    scm {
+      url 'https://github.com/datatyped/pretty'
+      connection 'scm:https://github.com/datatyped/pretty.git'
+      developerConnection 'scm:git://github.com/datatyped/pretty.git'
+    }
+
+    licenses {
+      license {
+        name 'The BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+      }
+    }
+
+    developers {
+      developer {
+        id 'rdegnan'
+        name 'Ryland Degnan'
+        email 'rdegnan@datatyped.com'
+      }
+    }
+  }
+}
+
+extraArchive {
+  sources = false
+  javadoc = false
+}
